@@ -12,7 +12,8 @@ const Home = props => (
         {
           props.showModalEditProduct
             ? <ModalProduct products={props.products} id={props.showModalEditProduct}
-              editProduct={props.editProduct}/>
+              editProduct={props.editProduct} 
+              checkValidFormEditProduct={props.checkValidFormEditProduct} />
             : null
         }
         {

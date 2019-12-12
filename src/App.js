@@ -29,6 +29,41 @@ class App extends Component {
     this.setState({showModalEditProduct: id});
   }
 
+  checkValidFormEditProduct = (e) => {
+    e.preventDefault();
+
+    const title = document.getElementById('editProductTitle');
+    
+    if(title.value.length < 5 || title.value.length > 40) {
+      title.classList.add('edit-product_input-invalid');
+      return false;
+    } else {
+      title.classList.remove('edit-product_input-invalid');
+    }
+
+    const price = document.getElementById('editProductPrice');
+
+    if(price.value <= 0) {
+      price.classList.add('edit-product_input-invalid');
+      return false;
+    } else {
+      price.classList.remove('edit-product_input-invalid');
+    }
+
+    const date = document.getElementById('editProductExpDate');
+
+    let d = date.value.split('.').reverse().join("-");
+
+    if(isNaN(Date.parse(d)) || new Date() - Date.parse(d) > 0) {
+      date.classList.add('edit-product_input-invalid');
+      return false;
+    } else {
+      date.classList.remove('edit-product_input-invalid');
+    }
+
+    console.log('Все ОК!');
+  }
+
   checkValidFormAut = (e) => {
     var form = document.getElementById('formAut');
     var isValidForm = form.checkValidity();
@@ -43,7 +78,8 @@ class App extends Component {
     return (
       <Home checkValidFormAut={this.checkValidFormAut}
       userAuthorized={this.state.userAuthorized} products={this.state.products}
-      editProduct={this.editProduct} showModalEditProduct={this.state.showModalEditProduct}/>
+      editProduct={this.editProduct} showModalEditProduct={this.state.showModalEditProduct}
+      checkValidFormEditProduct={this.checkValidFormEditProduct}/>
     );
   }
 }
