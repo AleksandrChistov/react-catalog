@@ -54,7 +54,7 @@ class App extends Component {
 
     let d = date.value.split('.').reverse().join("-");
 
-    if(isNaN(Date.parse(d)) || new Date() - Date.parse(d) > 0) {
+    if(isNaN(Date.parse(d))) {
       date.classList.add('edit-product_input-invalid');
       return false;
     } else {

@@ -1,5 +1,6 @@
 import React from 'react';
 import './modal-product.sass';
+import {IMaskInput} from 'react-imask';
 
 const ModalProduct = props => {
   const {products, id, editProduct, checkValidFormEditProduct} = props;
@@ -25,8 +26,19 @@ const ModalProduct = props => {
 
           <label htmlFor="editProductExpDate" className="edit-product__exp-date-label">
             <span className="edit-product__text">Годен до: </span>
-            <input type="text" id="editProductExpDate" className="edit-product__exp-date" 
-            defaultValue={products[id - 1].expDate}/>
+            <IMaskInput
+              mask={Date}
+              min={new Date()}
+              max={new Date(2050, 0, 1)}
+              value={products[id - 1].expDate}
+              lazy={false}
+              unmask={true}
+              onAccept={
+                (value, mask) => console.log(value)
+              }
+              id="editProductExpDate" 
+              className="edit-product__exp-date"
+            />
           </label>
 
           <label htmlFor="editProductCategory" className="edit-product__category-label">
