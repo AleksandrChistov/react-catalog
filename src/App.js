@@ -1,11 +1,10 @@
 import React from 'react';
 import './App.sass';
+import Home from './page/home/home'
 
 function App() {
   return (
-    <div className="container">
-      <h1 className="title">Hello React!</h1>
-    </div>
+    <Home />
   );
 }
 
