@@ -5,7 +5,6 @@ import Home from './page/home/home'
 class App extends Component {
   
   state = {
-    userAuthorized: false,
     products: [
       {name: 'Товар №1', price: 1350, expDate: '13.12.2021', category: 'Валенки', id: 1}, 
       {name: 'Товар №2', price: 1150, expDate: '22.06.2021', category: 'Угги', id: 2},
@@ -16,11 +15,18 @@ class App extends Component {
     categories: ['Ботинки и полуботинки', 'Валенки', 'Галоши', 'Бутсы', 'Кеды', 
                 'Кроссовки', 'Сникеры', 'Чешки', 'Шиповки', 'Мокасины', 'Сабо', 
                 'Сандалии', 'Сапоги и унты', 'Слипоны', 'Тапочки', 'Топсайдеры', 
-                'Туфли и лоферы', 'Угги']
+                'Туфли и лоферы', 'Угги'],
+    userAuthorized: true,
+    showModalEditProduct: 0
   }
 
   createExpDate = (date) => {
     console.log(date);
+  }
+
+  editProduct = (id) => {
+    console.log(id);
+    this.setState({showModalEditProduct: id});
   }
 
   checkValidFormAut = (e) => {
@@ -29,16 +35,15 @@ class App extends Component {
 
     if(isValidForm) {
       e.preventDefault();
-      this.setState(() => {
-        return { userAuthorized: true }
-      });
+      this.setState({ userAuthorized: true });
     }
   }
 
   render() {
     return (
       <Home checkValidFormAut={this.checkValidFormAut}
-      userAuthorized={this.state.userAuthorized} products={this.state.products}/>
+      userAuthorized={this.state.userAuthorized} products={this.state.products}
+      editProduct={this.editProduct} showModalEditProduct={this.state.showModalEditProduct}/>
     );
   }
 }

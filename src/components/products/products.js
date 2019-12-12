@@ -12,7 +12,8 @@ const Products = props => (
             <div className="product__exp-date"><b>Годен до:</b> {product.expDate}</div>
             <div className="product__category"><b>Категория:</b> {product.category}</div>
             <div className="product-wrapper-btn">
-              <button className="btn product__btn-edit">Редактировать</button>
+              <button onClick={() => props.editProduct(product.id)} 
+                className="btn product__btn-edit">Редактировать</button>
               <button className="btn product__btn-delete">Удалить</button>
             </div>
           </div>

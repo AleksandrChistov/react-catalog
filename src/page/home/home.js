@@ -3,17 +3,24 @@ import './home.sass';
 import Header from '../../components/header/header'
 import FormAut from '../../components/form-aut/form-aut'
 import Products from '../../components/products/products'
+import ModalProduct from '../../components/modal-product/modal-product'
 
 const Home = props => (
   <React.Fragment>
     <Header />
       <div className="container">
         {
+          props.showModalEditProduct
+            ? <ModalProduct products={props.products} id={props.showModalEditProduct}
+              editProduct={props.editProduct}/>
+            : null
+        }
+        {
           props.userAuthorized 
             ? <React.Fragment>
                 <h1 className="products-title">Наши товары</h1> 
                 <div className="products-wrap"> 
-                  <Products products={props.products}/>
+                  <Products products={props.products} editProduct={props.editProduct}/>
                 </div>
               </React.Fragment> 
             : <React.Fragment>
