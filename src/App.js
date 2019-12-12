@@ -16,13 +16,15 @@ class App extends Component {
                 'Кроссовки', 'Сникеры', 'Чешки', 'Шиповки', 'Мокасины', 'Сабо', 
                 'Сандалии', 'Сапоги и унты', 'Слипоны', 'Тапочки', 'Топсайдеры', 
                 'Туфли и лоферы', 'Угги'],
-    userAuthorized: true,
+    userAuthorized: false,
     showModalEditProduct: 0
   }
+
 
   editProduct = (id) => {
     this.setState({showModalEditProduct: id});
   }
+
 
   checkValidFormEditProduct = (e) => {
     e.preventDefault();
@@ -30,19 +32,19 @@ class App extends Component {
     const title = document.getElementById('editProductTitle');
     
     if(title.value.length < 5 || title.value.length > 40) {
-      title.classList.add('edit-product_input-invalid');
+      this.changeClassInput(title, 'add');
       return false;
     } else {
-      title.classList.remove('edit-product_input-invalid');
+      this.changeClassInput(title, 'del');
     }
 
     const price = document.getElementById('editProductPrice');
 
-    if(price.value <= 0) {
-      price.classList.add('edit-product_input-invalid');
-      return false;
+    if(price.value > 0) {
+      this.changeClassInput(price, 'del');
     } else {
-      price.classList.remove('edit-product_input-invalid');
+      this.changeClassInput(price, 'add');
+      return false;
     }
 
     const date = document.getElementById('editProductExpDate');
@@ -50,14 +52,24 @@ class App extends Component {
     let d = date.value.split('.').reverse().join("-");
 
     if(isNaN(Date.parse(d))) {
-      date.classList.add('edit-product_input-invalid');
+      this.changeClassInput(date, 'add');
       return false;
     } else {
-      date.classList.remove('edit-product_input-invalid');
+      this.changeClassInput(date, 'del');
     }
 
     console.log('Все ОК!');
   }
+
+
+  changeClassInput = (input, change) => {
+    if (change === 'add') {
+      input.classList.add('edit-product_input-invalid');
+    } else {
+      input.classList.remove('edit-product_input-invalid');
+    }
+  }
+
 
   checkValidFormAut = (e) => {
     var form = document.getElementById('formAut');
@@ -68,6 +80,7 @@ class App extends Component {
       this.setState({ userAuthorized: true });
     }
   }
+
 
   render() {
     return (

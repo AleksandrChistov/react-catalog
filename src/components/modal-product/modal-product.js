@@ -33,10 +33,7 @@ const ModalProduct = props => {
               max={new Date(2050, 0, 1)}
               value={products[id - 1].expDate}
               lazy={false}
-              unmask={true}
-              onAccept={
-                (value, mask) => console.log(value)
-              }
+              unmask={false}
               id="editProductExpDate" 
               className="edit-product__exp-date"
             />
