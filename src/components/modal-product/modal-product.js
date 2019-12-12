@@ -6,7 +6,7 @@ const ModalProduct = props => {
   return (
     <div className="edit-product-wrap">
       <div className="edit-product" key={products[id - 1].id}>
-
+        <h3 className="edit-product__main-title">Редактирование товара</h3>
         <label htmlFor="editProductTitle" className="edit-product__title-label">
           <span className="edit-product__text">Название товара: </span>
           <input type="text" id="editProductTitle" className="edit-product__title" 
