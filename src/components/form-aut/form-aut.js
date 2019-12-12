@@ -2,7 +2,7 @@ import React from 'react';
 import './form-aut.sass';
 
 const FormAut = props => (
-  <form className="form-aut" action="#" method="get">
+  <form className="form-aut" id="formAut" action="#" method="get">
     <input className="form-aut__input" type="email" id="formAutEmail" 
     name="email" placeholder="Ваш email" required/>
     <input className="form-aut__input" type="password" id="formAutPassword" 

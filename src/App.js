@@ -9,10 +9,10 @@ class App extends Component {
   }
 
   checkValidFormAut = (e) => {
-    let formAutEmail = document.getElementById('formAutEmail');
-    let formAutPassword = document.getElementById('formAutPassword');
+    var form = document.getElementById('formAut');
+    var isValidForm = form.checkValidity();
 
-    if(formAutEmail.value.length > 0 && formAutPassword.value.length >= 5) {
+    if(isValidForm) {
       e.preventDefault();
       this.setState(() => {
         return { userAuthorized: true }
