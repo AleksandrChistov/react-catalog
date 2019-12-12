@@ -1,0 +1,42 @@
+.product
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  flex-grow: 1
+  width: 400px
+  max-width: 100%
+  border: 2px solid #212529
+  border-radius: 10px
+  padding: 1.2rem 2rem
+  margin-bottom: 1rem
+  &:nth-child(odd)
+    margin-right: 20px
+  &:last-child
+    margin: 0
+
+.product__title
+  margin: 0 auto 20px
+
+.product__price, .product__exp-date
+  margin-bottom: 10px
+
+.product__category
+  margin-bottom: 20px
+
+.product__exp-date
+  text-align: left
+
+.product-wrapper-btn
+  display: flex
+  justify-content: space-between
+  width: 100%
+
+.product__btn-edit
+  background-color: #46c342
+  color: #ffffff
+  flex-basis: 45%
+
+.product__btn-delete
+  background-color: #b342b7
+  color: #ffffff
+  flex-basis: 45%
