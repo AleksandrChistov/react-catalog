@@ -1,9 +1,10 @@
 import React from 'react';
 import './modal-product.sass';
 import {IMaskInput} from 'react-imask';
+import Categories from './categories/categories';
 
 const ModalProduct = props => {
-  const {products, id, editProduct, checkValidFormEditProduct} = props;
+  const {products, id, editProduct, checkValidFormEditProduct, categories} = props;
   return (
     <div className="edit-product-wrap">
       <div className="edit-product" key={products[id - 1].id}>
@@ -43,8 +44,10 @@ const ModalProduct = props => {
 
           <label htmlFor="editProductCategory" className="edit-product__category-label">
             <span className="edit-product__text">Категория: </span>
-            <input type="text" id="editProductCategory" className="edit-product__category" 
-            defaultValue={products[id - 1].category}/>
+            <select defaultValue={products[id - 1].category} name="categories" id="editProductCategory" 
+            className="edit-product__category" required>
+              <Categories categories={categories}/>
+            </select>
           </label>
 
           <div className="edit-product-wrapper-btn product-wrapper-btn">

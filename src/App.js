@@ -20,12 +20,7 @@ class App extends Component {
     showModalEditProduct: 0
   }
 
-  createExpDate = (date) => {
-    console.log(date);
-  }
-
   editProduct = (id) => {
-    console.log(id);
     this.setState({showModalEditProduct: id});
   }
 
@@ -79,7 +74,8 @@ class App extends Component {
       <Home checkValidFormAut={this.checkValidFormAut}
       userAuthorized={this.state.userAuthorized} products={this.state.products}
       editProduct={this.editProduct} showModalEditProduct={this.state.showModalEditProduct}
-      checkValidFormEditProduct={this.checkValidFormEditProduct}/>
+      checkValidFormEditProduct={this.checkValidFormEditProduct}
+      categories={this.state.categories}/>
     );
   }
 }
