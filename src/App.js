@@ -34,6 +34,14 @@ class App extends Component {
     this.setState({products: newProducts, showModalEditProduct: 0});
   }
 
+  deleteProduct = (id) => {
+    let products = [...this.state.products];
+    
+    let newProducts = products.filter(product => product.id !== id);
+
+    this.setState({products: newProducts});
+  }
+
 
   editProduct = (id) => {
     this.setState({showModalEditProduct: id});
@@ -105,7 +113,7 @@ class App extends Component {
       userAuthorized={this.state.userAuthorized} products={this.state.products}
       editProduct={this.editProduct} showModalEditProduct={this.state.showModalEditProduct}
       checkValidFormEditProduct={this.checkValidFormEditProduct}
-      categories={this.state.categories}/>
+      categories={this.state.categories} deleteProduct={this.deleteProduct}/>
     );
   }
 }

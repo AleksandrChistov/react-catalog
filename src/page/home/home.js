@@ -21,7 +21,8 @@ const Home = props => (
             ? <React.Fragment>
                 <h1 className="products-title">Наши товары</h1> 
                 <div className="products-wrap"> 
-                  <Products products={props.products} editProduct={props.editProduct}/>
+                  <Products products={props.products} editProduct={props.editProduct}
+                  deleteProduct={props.deleteProduct}/>
                 </div>
               </React.Fragment> 
             : <React.Fragment>

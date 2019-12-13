@@ -14,7 +14,8 @@ const Products = props => (
             <div className="product-wrapper-btn">
               <button onClick={() => props.editProduct(product.id)} 
                 className="btn product__btn-edit">Редактировать</button>
-              <button className="btn product__btn-delete">Удалить</button>
+              <button onClick={() => props.deleteProduct(product.id)} 
+                className="btn product__btn-delete">Удалить</button>
             </div>
           </div>
         )
