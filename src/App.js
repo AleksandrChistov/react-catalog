@@ -19,7 +19,7 @@ class App extends Component {
                 'Кроссовки', 'Сникеры', 'Чешки', 'Шиповки', 'Мокасины', 'Сабо', 
                 'Сандалии', 'Сапоги и унты', 'Слипоны', 'Тапочки', 'Топсайдеры', 
                 'Туфли и лоферы', 'Угги'],
-    userAuthorized: true,
+    userAuthorized: false,
     showModalEditProduct: 0,
     showModalEditCategory: 0
   }
@@ -28,8 +28,6 @@ class App extends Component {
     let products = [...this.state.products];
 
     let productCategory = products.find(product => product.category === this.state.categories[id])
-    
-    console.log(productCategory);
 
     if(productCategory) {
       return false;
@@ -161,7 +159,6 @@ class App extends Component {
 
     const category = document.getElementById('editProductCategory');
 
-    console.log('Все ОК!');
     if (checkEditOrAdd === 'add') {
       this.addProduct(titleValue, +price.value, date.value, category.value, id);
     } else {

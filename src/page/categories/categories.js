@@ -20,8 +20,6 @@ const CategoriesPage = props => (
           ? <React.Fragment>
               <div className="product-title-wrap categories-title-wrap">
                 <h1 className="products-title categories-title">Список категорий</h1>
-                <button onClick={() => props.createProduct()} 
-                className="btn-add-product">Добавить категорию</button>
               </div>
               <div className="categories-wrap"> 
                 <CategoriesList categories={props.categories} editCategory={props.editCategory}
