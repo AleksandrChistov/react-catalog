@@ -1,7 +1,5 @@
 Demo: https://react-catalog-d5521.web.app/
 
-## Available Scripts
-
 В каталоге проекта вы можете запустить:
 
 ### `npm start`
