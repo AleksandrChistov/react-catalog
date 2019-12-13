@@ -1,6 +1,7 @@
 import React from 'react';
 import './categories.sass';
 import FormAut from '../../components/form-aut/form-aut'
+import CategoriesList from '../../components/categories-list/categories-list'
 
 const CategoriesPage = props => (
   <React.Fragment>
@@ -14,11 +15,17 @@ const CategoriesPage = props => (
       } */}
       {
         props.userAuthorized 
-          ?  <div className="product-title-wrap">
-              <h1 className="products-title">Список категорий</h1>
-              <button onClick={() => props.createProduct()} 
-              className="btn-add-product">Добавить категорию</button>
-            </div>
+          ? <React.Fragment>
+              <div className="product-title-wrap categories-title-wrap">
+                <h1 className="products-title categories-title">Список категорий</h1>
+                <button onClick={() => props.createProduct()} 
+                className="btn-add-product">Добавить категорию</button>
+              </div>
+              <div className="categories-wrap"> 
+                <CategoriesList products={props.categories} editProduct={props.editProduct}
+                deleteProduct={props.deleteProduct}/>
+              </div>
+            </React.Fragment> 
           : <React.Fragment>
               <p className="form-title">Авторизуйтесь на сайте, 
                 чтобы начать им пользоваться<br/> (введите любые логин и пароль).</p>

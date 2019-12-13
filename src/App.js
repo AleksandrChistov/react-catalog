@@ -148,7 +148,7 @@ class App extends Component {
         </Route>
         <Route path="/categories">
           <CategoriesPage checkValidFormAut={this.checkValidFormAut} 
-          userAuthorized={this.state.userAuthorized}/>
+          userAuthorized={this.state.userAuthorized} categories={this.state.categories}/>
         </Route>
       </React.Fragment>
     );
