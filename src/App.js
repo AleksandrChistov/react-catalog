@@ -21,6 +21,33 @@ class App extends Component {
   }
 
 
+  addProduct = (name, price, expDate, category, id) => {
+    let products = [...this.state.products];
+    
+    products.push({name, price, expDate, category, id});
+    
+    this.setState({products, showModalEditProduct: 0});
+  }
+
+
+  createProduct = () => {
+    let id = this.state.products.length 
+      ? this.state.products[this.state.products.length - 1].id + 1 
+      : 1;
+    
+    this.setState({showModalEditProduct: id});
+  }
+
+  
+  deleteProduct = (id) => {
+    let products = [...this.state.products];
+    
+    let newProducts = products.filter(product => product.id !== id);
+
+    this.setState({products: newProducts});
+  }
+
+
   saveEditProduct = (name, price, expDate, category, id) => {
     let products = [...this.state.products];
     
@@ -34,26 +61,19 @@ class App extends Component {
     this.setState({products: newProducts, showModalEditProduct: 0});
   }
 
-  deleteProduct = (id) => {
-    let products = [...this.state.products];
-    
-    let newProducts = products.filter(product => product.id !== id);
-
-    this.setState({products: newProducts});
-  }
-
 
   editProduct = (id) => {
     this.setState({showModalEditProduct: id});
   }
 
 
-  checkValidFormEditProduct = (e, id) => {
+  checkValidFormEditProduct = (e, id, checkEditOrAdd) => {
     e.preventDefault();
 
     const title = document.getElementById('editProductTitle');
+    const titleValue = title.value.trim();
     
-    if(title.value.length < 5 || title.value.length > 40) {
+    if(titleValue.length < 5 || titleValue.length > 40) {
       this.changeClassInput(title, 'add');
       return false;
     } else {
@@ -83,7 +103,11 @@ class App extends Component {
     const category = document.getElementById('editProductCategory');
 
     console.log('Все ОК!');
-    this.saveEditProduct(title.value, +price.value, date.value, category.value, id);
+    if (checkEditOrAdd === 'add') {
+      this.addProduct(titleValue, +price.value, date.value, category.value, id);
+    } else {
+      this.saveEditProduct(titleValue, +price.value, date.value, category.value, id);
+    }
   }
 
 
@@ -113,7 +137,8 @@ class App extends Component {
       userAuthorized={this.state.userAuthorized} products={this.state.products}
       editProduct={this.editProduct} showModalEditProduct={this.state.showModalEditProduct}
       checkValidFormEditProduct={this.checkValidFormEditProduct}
-      categories={this.state.categories} deleteProduct={this.deleteProduct}/>
+      categories={this.state.categories} deleteProduct={this.deleteProduct}
+      createProduct={this.createProduct}/>
     );
   }
 }

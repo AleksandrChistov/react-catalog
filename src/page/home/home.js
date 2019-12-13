@@ -19,7 +19,15 @@ const Home = props => (
         {
           props.userAuthorized 
             ? <React.Fragment>
-                <h1 className="products-title">Наши товары</h1> 
+                <div className="product-title-wrap">
+                {
+                  props.products.length
+                    ? <h1 className="products-title">Наши товары</h1>
+                    : null
+                }
+                  <button onClick={() => props.createProduct()} 
+                  className="btn-add-product">Добавить товар</button>
+                </div>
                 <div className="products-wrap"> 
                   <Products products={props.products} editProduct={props.editProduct}
                   deleteProduct={props.deleteProduct}/>
