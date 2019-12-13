@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import {Route} from 'react-router-dom'
 import './App.sass';
+import Header from './components/header/header'
 import Home from './page/home/home'
+import CategoriesPage from './page/categories/categories'
 
 class App extends Component {
   
@@ -133,12 +136,21 @@ class App extends Component {
 
   render() {
     return (
-      <Home checkValidFormAut={this.checkValidFormAut}
-      userAuthorized={this.state.userAuthorized} products={this.state.products}
-      editProduct={this.editProduct} showModalEditProduct={this.state.showModalEditProduct}
-      checkValidFormEditProduct={this.checkValidFormEditProduct}
-      categories={this.state.categories} deleteProduct={this.deleteProduct}
-      createProduct={this.createProduct}/>
+      <React.Fragment>
+        <Header/>
+        <Route path="/" exact>
+          <Home checkValidFormAut={this.checkValidFormAut}
+          userAuthorized={this.state.userAuthorized} products={this.state.products}
+          editProduct={this.editProduct} showModalEditProduct={this.state.showModalEditProduct}
+          checkValidFormEditProduct={this.checkValidFormEditProduct}
+          categories={this.state.categories} deleteProduct={this.deleteProduct}
+          createProduct={this.createProduct} />
+        </Route>
+        <Route path="/categories">
+          <CategoriesPage checkValidFormAut={this.checkValidFormAut} 
+          userAuthorized={this.state.userAuthorized}/>
+        </Route>
+      </React.Fragment>
     );
   }
 }
