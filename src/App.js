@@ -16,8 +16,22 @@ class App extends Component {
                 'Кроссовки', 'Сникеры', 'Чешки', 'Шиповки', 'Мокасины', 'Сабо', 
                 'Сандалии', 'Сапоги и унты', 'Слипоны', 'Тапочки', 'Топсайдеры', 
                 'Туфли и лоферы', 'Угги'],
-    userAuthorized: false,
+    userAuthorized: true,
     showModalEditProduct: 0
+  }
+
+
+  saveEditProduct = (name, price, expDate, category, id) => {
+    let products = [...this.state.products];
+    
+    let newProducts = products.map(product => {
+      if(product.id === id) {
+        product = {name, price, expDate, category, id};
+      }
+      return product;
+    });
+    
+    this.setState({products: newProducts, showModalEditProduct: 0});
   }
 
 
@@ -26,7 +40,7 @@ class App extends Component {
   }
 
 
-  checkValidFormEditProduct = (e) => {
+  checkValidFormEditProduct = (e, id) => {
     e.preventDefault();
 
     const title = document.getElementById('editProductTitle');
@@ -58,7 +72,10 @@ class App extends Component {
       this.changeClassInput(date, 'del');
     }
 
+    const category = document.getElementById('editProductCategory');
+
     console.log('Все ОК!');
+    this.saveEditProduct(title.value, +price.value, date.value, category.value, id);
   }
 
 

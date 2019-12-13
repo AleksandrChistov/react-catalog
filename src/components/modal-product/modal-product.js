@@ -49,7 +49,7 @@ const ModalProduct = props => {
 
           <div className="edit-product-wrapper-btn product-wrapper-btn">
             <button type="submit" className="btn product__btn-edit edit-product__btn-save"
-            onClick={(e) => checkValidFormEditProduct(e)}>Сохранить</button>
+            onClick={(e) => checkValidFormEditProduct(e, id)}>Сохранить</button>
             <button onClick={() => editProduct(0)} 
             className="btn product__btn-delete edit-product__btn-cancel">Отмена</button>
           </div>
