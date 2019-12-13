@@ -20,7 +20,44 @@ class App extends Component {
                 'Сандалии', 'Сапоги и унты', 'Слипоны', 'Тапочки', 'Топсайдеры', 
                 'Туфли и лоферы', 'Угги'],
     userAuthorized: true,
-    showModalEditProduct: 0
+    showModalEditProduct: 0,
+    showModalEditCategory: 0
+  }
+
+
+  checkValidFormEditCategory = (e, category, categoryId) => {
+    e.preventDefault();
+    
+    var form = document.getElementById('formEditCategory');
+    var isValidForm = form.checkValidity();
+
+    var input = document.getElementById('editCategoryText');
+    
+    if(isValidForm) {
+      this.changeClassInput(input, 'del');
+
+      let products = [...this.state.products];
+
+      let newProducts = products.map(product => {
+        if(product.category === category) {
+          product.category = input.value;
+        }
+        return product;
+      })
+
+      let newCategories = [...this.state.categories];
+      newCategories[categoryId] = input.value;
+
+      this.setState({products: newProducts, categories: 
+        newCategories, showModalEditCategory: 0});
+    } else {
+      this.changeClassInput(input, 'add');
+    }
+  }
+
+
+  editCategory = (id) => {
+    this.setState({showModalEditCategory: id});
   }
 
 
@@ -148,7 +185,10 @@ class App extends Component {
         </Route>
         <Route path="/categories">
           <CategoriesPage checkValidFormAut={this.checkValidFormAut} 
-          userAuthorized={this.state.userAuthorized} categories={this.state.categories}/>
+          userAuthorized={this.state.userAuthorized} categories={this.state.categories} 
+          showModalEditCategory={this.state.showModalEditCategory}
+          editCategory={this.editCategory} 
+          checkValidFormEditCategory={this.checkValidFormEditCategory}/>
         </Route>
       </React.Fragment>
     );

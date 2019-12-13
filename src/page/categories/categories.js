@@ -2,17 +2,19 @@ import React from 'react';
 import './categories.sass';
 import FormAut from '../../components/form-aut/form-aut'
 import CategoriesList from '../../components/categories-list/categories-list'
+import ModalCategory from '../../components/modal-category/modal-category'
 
 const CategoriesPage = props => (
   <React.Fragment>
     <div className="container">
-      {/* {
-        props.showModalEditCategories
-          ? <Categories products={props.products} id={props.showModalEditProduct}
-            editProduct={props.editProduct} categories={props.categories} 
-            checkValidFormEditProduct={props.checkValidFormEditProduct} />
+      {
+        props.showModalEditCategory
+          ? <ModalCategory categories={props.categories}
+            showModalEditCategory={props.showModalEditCategory}
+            editCategory={props.editCategory}
+            checkValidFormEditCategory={props.checkValidFormEditCategory}/>
           : null
-      } */}
+      }
       {
         props.userAuthorized 
           ? <React.Fragment>
@@ -22,7 +24,7 @@ const CategoriesPage = props => (
                 className="btn-add-product">Добавить категорию</button>
               </div>
               <div className="categories-wrap"> 
-                <CategoriesList products={props.categories} editProduct={props.editProduct}
+                <CategoriesList categories={props.categories} editCategory={props.editCategory}
                 deleteProduct={props.deleteProduct}/>
               </div>
             </React.Fragment> 
