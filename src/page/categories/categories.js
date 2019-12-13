@@ -11,7 +11,7 @@ const CategoriesPage = props => (
         props.showModalEditCategory
           ? <ModalCategory categories={props.categories}
             showModalEditCategory={props.showModalEditCategory}
-            editCategory={props.editCategory}
+            editCategory={props.editCategory} 
             checkValidFormEditCategory={props.checkValidFormEditCategory}/>
           : null
       }
@@ -25,7 +25,7 @@ const CategoriesPage = props => (
               </div>
               <div className="categories-wrap"> 
                 <CategoriesList categories={props.categories} editCategory={props.editCategory}
-                deleteProduct={props.deleteProduct}/>
+                deleteCategory={props.deleteCategory}/>
               </div>
             </React.Fragment> 
           : <React.Fragment>

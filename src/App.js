@@ -24,6 +24,22 @@ class App extends Component {
     showModalEditCategory: 0
   }
 
+  deleteCategory = (id) => {
+    let products = [...this.state.products];
+
+    let productCategory = products.find(product => product.category === this.state.categories[id])
+    
+    console.log(productCategory);
+
+    if(productCategory) {
+      return false;
+    }
+
+    let newCategories = [...this.state.categories];
+    newCategories.splice(id, 1);
+
+    this.setState({categories: newCategories});
+  }
 
   checkValidFormEditCategory = (e, category, categoryId) => {
     e.preventDefault();
@@ -35,24 +51,27 @@ class App extends Component {
     
     if(isValidForm) {
       this.changeClassInput(input, 'del');
-
-      let products = [...this.state.products];
-
-      let newProducts = products.map(product => {
-        if(product.category === category) {
-          product.category = input.value;
-        }
-        return product;
-      })
-
-      let newCategories = [...this.state.categories];
-      newCategories[categoryId] = input.value;
-
-      this.setState({products: newProducts, categories: 
-        newCategories, showModalEditCategory: 0});
+      this.saveEditCategory(category, categoryId, input.value);
     } else {
       this.changeClassInput(input, 'add');
     }
+  }
+
+  saveEditCategory = (category, categoryId, value) => {
+    let products = [...this.state.products];
+
+    let newProducts = products.map(product => {
+      if(product.category === category) {
+        product.category = value;
+      }
+      return product;
+    })
+
+    let newCategories = [...this.state.categories];
+    newCategories[categoryId] = value;
+
+    this.setState({products: newProducts, categories: 
+      newCategories, showModalEditCategory: 0});
   }
 
 
@@ -187,7 +206,7 @@ class App extends Component {
           <CategoriesPage checkValidFormAut={this.checkValidFormAut} 
           userAuthorized={this.state.userAuthorized} categories={this.state.categories} 
           showModalEditCategory={this.state.showModalEditCategory}
-          editCategory={this.editCategory} 
+          editCategory={this.editCategory} deleteCategory={this.deleteCategory} 
           checkValidFormEditCategory={this.checkValidFormEditCategory}/>
         </Route>
       </React.Fragment>

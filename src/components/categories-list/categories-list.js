@@ -11,7 +11,7 @@ const CategoriesList = props => (
             <div className="product-wrapper-btn categories-wrapper-btn">
               <button onClick={() => props.editCategory(index + 1)} 
                 className="btn product__btn-edit">Редактировать</button>
-              <button onClick={() => props.deleteCategory(category.id)} 
+              <button onClick={() => props.deleteCategory(index)} 
                 className="btn product__btn-delete">Удалить</button>
             </div>
           </div>
