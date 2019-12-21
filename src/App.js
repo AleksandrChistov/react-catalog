@@ -19,7 +19,7 @@ class App extends Component {
                 'Кроссовки', 'Сникеры', 'Чешки', 'Шиповки', 'Мокасины', 'Сабо', 
                 'Сандалии', 'Сапоги и унты', 'Слипоны', 'Тапочки', 'Топсайдеры', 
                 'Туфли и лоферы', 'Угги'],
-    userAuthorized: true,
+    userAuthorized: false,
     showModalEditProduct: 0,
     showModalEditCategory: 0,
     categoriesDeleteError: false
@@ -39,6 +39,15 @@ class App extends Component {
     newCategories.splice(id, 1);
 
     this.setState({categories: newCategories, categoriesDeleteError: false});
+  }
+
+
+  createCategory = () => {
+    let id = this.state.categories.length 
+      ? this.state.categories.length + 1
+      : 1;
+    
+    this.setState({showModalEditCategory: id});
   }
 
 
@@ -209,7 +218,8 @@ class App extends Component {
           showModalEditCategory={this.state.showModalEditCategory}
           editCategory={this.editCategory} deleteCategory={this.deleteCategory} 
           checkValidFormEditCategory={this.checkValidFormEditCategory}
-          categoriesDeleteError={this.state.categoriesDeleteError} />
+          categoriesDeleteError={this.state.categoriesDeleteError} 
+          createCategory={this.createCategory} />
         </Route>
       </React.Fragment>
     );

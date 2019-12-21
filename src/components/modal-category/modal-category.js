@@ -2,17 +2,28 @@ import React from 'react';
 import './modal-category.sass';
 
 const ModalCategory = props => {
+
+  let title;
+  let defaultValue;
   
+  if (props.categories[props.showModalEditCategory - 1]) {
+    title = 'Редактирование категории';
+    defaultValue = props.categories[props.showModalEditCategory - 1];
+  } else {
+    title = 'Новая категория';
+    defaultValue = '';
+  }
+
   return (
     <div className="edit-product-wrap">
       <div className="edit-product">
-        <h3 className="category-edit__main-title">Редактирование категории</h3>
+        <h3 className="category-edit__main-title">{title}</h3>
         <form action="#" method="post" id="formEditCategory" 
         className="edit-product-form edit-category-form">
           <label htmlFor="editProductTitle" className="edit-product__title-label">
             <input type="text" id="editCategoryText" className="edit-product__title" 
             minLength="3" maxLength="30" placeholder="От 3 до 25 символов" 
-            defaultValue={props.categories[props.showModalEditCategory - 1]}/>
+            defaultValue={defaultValue} required/>
           </label>
           <div className="edit-product-wrapper-btn product-wrapper-btn">
             <button type="submit" className="btn product__btn-edit edit-product__btn-save"
