@@ -23,7 +23,7 @@ const CategoriesPage = props => (
               </div>
               <div className="categories-wrap"> 
                 <CategoriesList categories={props.categories} editCategory={props.editCategory}
-                deleteCategory={props.deleteCategory}/>
+                deleteCategory={props.deleteCategory} categoriesDeleteError={props.categoriesDeleteError}/>
               </div>
             </React.Fragment> 
           : <React.Fragment>

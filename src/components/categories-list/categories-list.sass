@@ -1,9 +1,13 @@
 .categories
   flex-direction: row
+  flex-wrap: wrap
   justify-content: space-between
   align-items: center
   width: 700px
   max-width: 100%
+
+.categories_delete-error
+  border: 2px solid red
 
 .categories__title
   text-align: left
@@ -17,3 +21,9 @@
 
 .categories:nth-child(odd)
   margin-right: 0
+
+.categories__text-delete-error
+  flex-basis: 100%
+  margin-top: 10px
+  font-weight: 500
+  color: red

@@ -19,9 +19,10 @@ class App extends Component {
                 'Кроссовки', 'Сникеры', 'Чешки', 'Шиповки', 'Мокасины', 'Сабо', 
                 'Сандалии', 'Сапоги и унты', 'Слипоны', 'Тапочки', 'Топсайдеры', 
                 'Туфли и лоферы', 'Угги'],
-    userAuthorized: false,
+    userAuthorized: true,
     showModalEditProduct: 0,
-    showModalEditCategory: 0
+    showModalEditCategory: 0,
+    categoriesDeleteError: false
   }
 
   deleteCategory = (id) => {
@@ -30,14 +31,16 @@ class App extends Component {
     let productCategory = products.find(product => product.category === this.state.categories[id])
 
     if(productCategory) {
+      this.setState({categoriesDeleteError: id});
       return false;
     }
 
     let newCategories = [...this.state.categories];
     newCategories.splice(id, 1);
 
-    this.setState({categories: newCategories});
+    this.setState({categories: newCategories, categoriesDeleteError: false});
   }
+
 
   checkValidFormEditCategory = (e, category, categoryId) => {
     e.preventDefault();
@@ -54,6 +57,7 @@ class App extends Component {
       this.changeClassInput(input, 'add');
     }
   }
+
 
   saveEditCategory = (category, categoryId, value) => {
     let products = [...this.state.products];
@@ -74,7 +78,7 @@ class App extends Component {
 
 
   editCategory = (id) => {
-    this.setState({showModalEditCategory: id});
+    this.setState({showModalEditCategory: id, categoriesDeleteError: false});
   }
 
 
@@ -204,7 +208,8 @@ class App extends Component {
           userAuthorized={this.state.userAuthorized} categories={this.state.categories} 
           showModalEditCategory={this.state.showModalEditCategory}
           editCategory={this.editCategory} deleteCategory={this.deleteCategory} 
-          checkValidFormEditCategory={this.checkValidFormEditCategory}/>
+          checkValidFormEditCategory={this.checkValidFormEditCategory}
+          categoriesDeleteError={this.state.categoriesDeleteError} />
         </Route>
       </React.Fragment>
     );
